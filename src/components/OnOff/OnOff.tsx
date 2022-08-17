@@ -3,18 +3,17 @@ import {FormEvent, useState} from "react";
 
 type OnOffPropsType = {
     on: boolean
-    changeColorOn: () => void
-    changeColorOff: () => void
+    changeColor: (on: boolean) => void
 }
 
 const OnOff = (props: OnOffPropsType) => {
 
 
     return <div className={s.container}>
-        <div onClick={() => props.changeColorOn()}
+        <div onClick={() => props.changeColor(true)}
              className={`${s.item} ${props.on ? s.active_on : s.item}`}>On
         </div>
-        <div onClick={() => props.changeColorOff()} className={`${s.item} ${props.on ? s.item : s.active_off}`}>Off
+        <div onClick={() => props.changeColor(false)} className={`${s.item} ${props.on ? s.item : s.active_off}`}>Off
         </div>
         <div className={`${s.circle} ${props.on ? s.active_on : s.active_off}`}></div>
     </div>

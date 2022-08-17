@@ -12,12 +12,8 @@ function App() {
 
     const [ratingValue, setRatingValue] = useState<RatingValueType>(0)
     const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false)
-    const [onOffOnValue, setOnOffOnValue] = useState<boolean>(false)
+    const [switchOn, setSwitchOn] = useState<boolean>(false)
 
-
-    const changeColorOff = () => {
-        setOnOffOnValue(false);
-    }
 
     return (
         <div className='App'>
@@ -30,9 +26,8 @@ function App() {
             Article 2
             <UncontrolledRating/>
             <UncontrolledAccordion titleValue={'Menu'}/>
-            <OnOff on={onOffOnValue} changeColorOn={() => setOnOffOnValue(true)}
-                   changeColorOff={() => setOnOffOnValue(false)}/>
-            <UncontrolledOnOff/>
+   {/*         <OnOff on={switchOn} changeColor={setSwitchOn}/>*/}
+            <UncontrolledOnOff changeColor={setSwitchOn}/> {switchOn.toString()}
         </div>
     );
 }
