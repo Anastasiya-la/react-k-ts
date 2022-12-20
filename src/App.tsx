@@ -14,6 +14,13 @@ function App() {
     const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false)
     const [switchOn, setSwitchOn] = useState<boolean>(false)
 
+    const items = [{title: 'Ana', value: '1'}, {
+        title: 'Nika',
+        value: '2'
+    }, {title: 'Mira', value: '3'}]
+    const onClick = (value: string) => {
+        alert(`id: ${value}`)
+    }
 
     return (
         <div className='App'>
@@ -21,12 +28,12 @@ function App() {
             <PageTitle title={'My friends'}/>
             Article 1
             <Rating value={ratingValue} onClick={setRatingValue}/>
-            <Accordion titleValue={'Users'} collapsed={accordionCollapsed} setCollapsed={setAccordionCollapsed}/>
+             <Accordion titleValue={'Users'} collapsed={accordionCollapsed} setCollapsed={setAccordionCollapsed} items={items} onClick={onClick}/>
 
             Article 2
             <UncontrolledRating/>
             <UncontrolledAccordion titleValue={'Menu'}/>
-   {/*         <OnOff on={switchOn} changeColor={setSwitchOn}/>*/}
+            {/*         <OnOff on={switchOn} changeColor={setSwitchOn}/>*/}
             <UncontrolledOnOff changeColor={setSwitchOn}/> {switchOn.toString()}
         </div>
     );
