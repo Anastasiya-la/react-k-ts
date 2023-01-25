@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useRef, useState} from 'react';
+import React, {ChangeEvent, createRef, useRef, useState} from 'react';
 
 export default {
     title: 'input',
