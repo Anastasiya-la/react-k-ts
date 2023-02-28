@@ -9,7 +9,7 @@ type AccordionPropsType = {
     titleValue: string
     collapsed: boolean
     setCollapsed: (collapsed: boolean) => void
-    items: Array<ItemType>
+    items: Array<ItemType> // ItemType[]
     onClick: (value: string) => void
 }
 

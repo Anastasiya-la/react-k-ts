@@ -6,13 +6,16 @@ import OnOff from "./components/OnOff/OnOff";
 import UncontrolledAccordion from "./components/UncontrolledAccordion/UncontrolledAccordion";
 import {UncontrolledRating} from "./components/UncontrolledRating/UncontrolledRating";
 import UncontrolledOnOff from "./components/UncontrolledOnOff/UncontrolledOnOff";
+import Select from "./components/Select/Select";
 
 function App() {
     console.log('App rendering');
 
     const [ratingValue, setRatingValue] = useState<RatingValueType>(0)
-    const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false)
+    const [accordionCollapsed, setAccordionCollapsed] = useState(false)
     const [switchOn, setSwitchOn] = useState<boolean>(false)
+    const [valueOfSelect, setValueOfSelect] = useState('2')
+    const itemsSelect = [{title: '13', value: '1'}, {title: '18', value: '2'}, {title: '25', value: '3'}]
 
     const items = [{title: 'Ana', value: '1'}, {
         title: 'Nika',
@@ -28,13 +31,15 @@ function App() {
             <PageTitle title={'My friends'}/>
             Article 1
             <Rating value={ratingValue} onClick={setRatingValue}/>
-             <Accordion titleValue={'Users'} collapsed={accordionCollapsed} setCollapsed={setAccordionCollapsed} items={items} onClick={onClick}/>
+            <Accordion titleValue={'Users'} collapsed={accordionCollapsed} setCollapsed={setAccordionCollapsed}
+                       items={items} onClick={onClick}/>
 
             Article 2
             <UncontrolledRating/>
             <UncontrolledAccordion titleValue={'Menu'}/>
             {/*         <OnOff on={switchOn} changeColor={setSwitchOn}/>*/}
             <UncontrolledOnOff changeColor={setSwitchOn}/> {switchOn.toString()}
+            <Select value={valueOfSelect} onChange={setValueOfSelect} items={itemsSelect}/>
         </div>
     );
 }
