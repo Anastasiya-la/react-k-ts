@@ -59,9 +59,9 @@ export const HelpsToReactMemo = () => {
         setUsers(newUser)
     }
 
-    const newArray = useMemo(()=>{
+    const newArray = useMemo(() => {
         return users.filter(u => u.toLowerCase().indexOf('a') > -1)
-    },[users]);
+    }, [users]);
 
     return (<div>
             <button onClick={() => setCounter(counter + 1)}>+</button>

@@ -7,7 +7,6 @@ export default {
 }
 
 
-
 const NewMessageCounterS = (props: { count: number }) => {
     console.log('Counter')
     return <div>{props.count}</div>
@@ -17,7 +16,7 @@ const NewMessageCounter = React.memo(NewMessageCounterS)
 export const Example1 = () => {
 
     const [counter, setCounter] = useState(0)
-    const [value, setValue]  = useState('2')
+    const [value, setValue] = useState('2')
     const [cities, setCities] = useState([
         {countryId: '1', title: 'Minsk', numberOfCitizens: 2020133},
         {countryId: '2', title: 'Moscow', numberOfCitizens: 13097539},
@@ -38,7 +37,7 @@ export const Example1 = () => {
 export const Example2 = () => {
 
     const [counter, setCounter] = useState(0)
-    const [value, setValue]  = useState('2')
+    const [value, setValue] = useState('2')
     const [cities, setCities] = useState([
         {countryId: '1', title: 'Minsk', numberOfCitizens: 2020133},
         {countryId: '2', title: 'Moscow', numberOfCitizens: 13097539},
@@ -59,7 +58,7 @@ export const Example2 = () => {
 export const Example3 = () => {
 
     const [counter, setCounter] = useState(0)
-    const [value, setValue]  = useState('2')
+    const [value, setValue] = useState('2')
     const [cities, setCities] = useState([
         {countryId: '1', title: 'Minsk', numberOfCitizens: 2020133},
         {countryId: '2', title: 'Moscow', numberOfCitizens: 13097539},

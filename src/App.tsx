@@ -17,12 +17,12 @@ function App() {
     const [ratingValue, setRatingValue] = useState<RatingValueType>(0)
     const [accordionCollapsed, setAccordionCollapsed] = useState(false)
     const [valueOfSelect, setValueOfSelect] = useState('2')
-    const itemsSelect = [{title: '13', countryId: '1'}, {title: '18', countryId: '2'}, {title: '25', countryId: '3'}]
-
-    const items = [{title: 'Ana', value: '1'}, {
+    const [itemsSelect, setItemsSelect] = useState([{title: '13', countryId: '1'}, {title: '18', countryId: '2'}, {title: '25', countryId: '3'}])
+    const [items, setItems] = useState([{title: 'Ana', value: '1'}, {
         title: 'Nika',
         value: '2'
-    }, {title: 'Mira', value: '3'}]
+    }, {title: 'Mira', value: '3'}])
+
     const onClick = useCallback((value: string) => {
         alert(`id: ${value}`)
     },[])
