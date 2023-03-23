@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, {memo, useState} from "react";
 import s from './Select.module.css'
 
 export type Itemtype = {
     title: string
-    value: string
+    countryId: string
+
 }
 
 type SelectPropsType = {
@@ -13,10 +14,11 @@ type SelectPropsType = {
 }
 
 export function Select(props: SelectPropsType) {
+    console.log('Select')
     const [active, setActive] = useState(false)
     const [hoveredElementValue, setHoveredElementValue]=useState(props.value)
 
-    const hoveredItem = props.items.find(i => i.value === hoveredElementValue)
+    const hoveredItem = props.items.find(i => i.countryId === hoveredElementValue)
 
     const activateSelectForm = () => {
         setActive(!active)
@@ -25,17 +27,15 @@ export function Select(props: SelectPropsType) {
         props.onChange(value)
         activateSelectForm()
     }
-    const selectedItem = props.items.find(i => i.value === props.value)
+    const selectedItem = props.items.find(i => i.countryId === props.value)
     return (
         <div className={s.select}>
             <span onClick={activateSelectForm} className={s.main}>{selectedItem && selectedItem.title}</span>
-            {active && <div className={s.options}>{props.items.map(i => <div onMouseEnter={()=> setHoveredElementValue(i.value)} className={`${s.item} ${hoveredItem === i ? s.selected : ''}`} key={i.value} onClick={() => {
-                onOptionClick(i.value)
+            {active && <div className={s.options}>{props.items.map(i => <div onMouseEnter={()=> setHoveredElementValue(i.countryId)} className={`${s.item} ${hoveredItem === i ? s.selected : ''}`} key={i.countryId} onClick={() => {
+                onOptionClick(i.countryId)
             }
             }>{i.title}</div>)}</div>}
         </div>
     )
 }
-
-
-export default Select;
+export const SelectS = React.memo(Select);

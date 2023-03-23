@@ -1,47 +1,53 @@
-import React, {useState} from 'react';
+
+import React, {useCallback, useState} from 'react';
 import './App.css';
-import Accordion from "./components/Accordion/Accordion";
-import {Rating, RatingValueType} from "./components/Rating/Rating";
+import {AccordionContainer} from "./components/Accordion/Accordion";
+import {RatingContainer, RatingValueType} from "./components/Rating/Rating";
 import OnOff from "./components/OnOff/OnOff";
-import UncontrolledAccordion from "./components/UncontrolledAccordion/UncontrolledAccordion";
-import {UncontrolledRating} from "./components/UncontrolledRating/UncontrolledRating";
-import UncontrolledOnOff from "./components/UncontrolledOnOff/UncontrolledOnOff";
-import Select from "./components/Select/Select";
+import  {
+    UncontrolledAccordionContainer
+} from "./components/UncontrolledAccordion/UncontrolledAccordion";
+import {UncontrolledRating, UncontrolledRatingContainer} from "./components/UncontrolledRating/UncontrolledRating";
+import UncontrolledOnOff, {UncontrolledOnOffContainer} from "./components/UncontrolledOnOff/UncontrolledOnOff";
+import {SelectS} from "./components/Select/Select";
 
 function App() {
     console.log('App rendering');
-
+    const [switchOn, setSwitchOn] = useState<boolean>(false)
     const [ratingValue, setRatingValue] = useState<RatingValueType>(0)
     const [accordionCollapsed, setAccordionCollapsed] = useState(false)
-    const [switchOn, setSwitchOn] = useState<boolean>(false)
     const [valueOfSelect, setValueOfSelect] = useState('2')
-    const itemsSelect = [{title: '13', value: '1'}, {title: '18', value: '2'}, {title: '25', value: '3'}]
+    const itemsSelect = [{title: '13', countryId: '1'}, {title: '18', countryId: '2'}, {title: '25', countryId: '3'}]
 
     const items = [{title: 'Ana', value: '1'}, {
         title: 'Nika',
         value: '2'
     }, {title: 'Mira', value: '3'}]
-    const onClick = (value: string) => {
+    const onClick = useCallback((value: string) => {
         alert(`id: ${value}`)
-    }
+    },[])
+
+
+
 
     return (
         <div className='App'>
-            <PageTitle title={'This is App component'}/>
-            <PageTitle title={'My friends'}/>
+            <PageTitleContainer title={'This is App component'}/>
+            <PageTitleContainer title={'My friends'}/>
             Article 1
-            <Rating value={ratingValue} onClick={setRatingValue}/>
-            <Accordion titleValue={'Users'} collapsed={accordionCollapsed} setCollapsed={setAccordionCollapsed}
+            <RatingContainer value={ratingValue} onClick={setRatingValue}/>
+            <AccordionContainer titleValue={'Users'} collapsed={accordionCollapsed} setCollapsed={setAccordionCollapsed}
                        items={items} onClick={onClick}/>
 
             Article 2
-            <UncontrolledRating/>
-            <UncontrolledAccordion titleValue={'Menu'}/>
-            {/*         <OnOff on={switchOn} changeColor={setSwitchOn}/>*/}
-            <UncontrolledOnOff changeColor={setSwitchOn}/> {switchOn.toString()}
-            <Select value={valueOfSelect} onChange={setValueOfSelect} items={itemsSelect}/>
+            <UncontrolledRatingContainer/>
+            <UncontrolledAccordionContainer titleValue={'Menu'}/>
+            {/*         <OnOffContainer on={switchOn} changeColor={setSwitchOn}/>*/}
+            <UncontrolledOnOff setSwitchOn={setSwitchOn}/>
+            <SelectS value={valueOfSelect} onChange={setValueOfSelect} items={itemsSelect}/>
         </div>
     );
+
 }
 
 type PageTitlePropsType = {
@@ -52,5 +58,7 @@ function PageTitle(props: PageTitlePropsType) {
     console.log('PageTitle rendering');
     return <h1>{props.title}</h1>
 }
+
+const PageTitleContainer = React.memo(PageTitle)
 
 export default App;

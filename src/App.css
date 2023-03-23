@@ -2,3 +2,7 @@
     width: 600px;
     margin: 20px auto;
 }
+.select{
+    display: flex;
+    gap: 10px;
+}

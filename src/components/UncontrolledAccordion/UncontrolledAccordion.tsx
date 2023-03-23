@@ -13,14 +13,16 @@ function UncontrolledAccordion(props: AccordionPropsType) {
  /*   const [collapsed, setCollapsed] = useState(false);*/
 
     return <div>
-        <AccordionTitle title={props.titleValue} onClick={() => {
+        <AccordionTitleContainer title={props.titleValue} onClick={() => {
             dispatch({type: TOGGLE_COLLAPSED})
         }}/>
-        {!state.collapsed && <AccordionBody/>}
+        {!state.collapsed && <AccordionBodyContainer/>}
     </div>
 
 
 }
+export const UncontrolledAccordionContainer = React.memo(UncontrolledAccordion)
+
 
 type AccordionTitlePropsType = {
     title: string
@@ -33,6 +35,8 @@ function AccordionTitle(props: AccordionTitlePropsType) {
 
 }
 
+const AccordionTitleContainer = React.memo(AccordionTitle)
+
 function AccordionBody() {
     console.log('AccordionBody rendering');
     return <ul>
@@ -41,5 +45,7 @@ function AccordionBody() {
         <li>3</li>
     </ul>
 }
+
+const AccordionBodyContainer = React.memo(AccordionBody)
 
 export default UncontrolledAccordion;

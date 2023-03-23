@@ -1,5 +1,5 @@
 import s from './OnOff.module.css';
-import {FormEvent, useState} from "react";
+import React from 'react';
 
 type OnOffPropsType = {
     on: boolean
@@ -18,5 +18,7 @@ const OnOff = (props: OnOffPropsType) => {
         <div className={`${s.circle} ${props.on ? s.active_on : s.active_off}`}></div>
     </div>
 }
+
+export const OnOffContainer = React.memo(OnOff)
 
 export default OnOff;

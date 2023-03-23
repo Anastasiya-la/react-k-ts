@@ -17,6 +17,8 @@ export function UncontrolledRating() {
     )
 }
 
+export const UncontrolledRatingContainer = React.memo(UncontrolledRating)
+
 type StarPropsType = {
     selected: boolean
     setValue: () => void
