@@ -9,11 +9,21 @@ export default {
 
 
 
-export const BaseExample = () => {
+export const BaseDigitalExample = () => {
     const [date, setDate] = useState(new Date())
     return (
         <div>
-           <Clock/>
+           <Clock mode={'digital'}/>
+        </div>
+    )
+}
+
+
+export const BaseAnalogExample = () => {
+    const [date, setDate] = useState(new Date())
+    return (
+        <div>
+            <Clock mode={'analog'}/>
         </div>
     )
 }
