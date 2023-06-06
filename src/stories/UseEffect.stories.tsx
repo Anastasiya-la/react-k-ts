@@ -37,7 +37,7 @@ export const SimpleExample = () => {
     )
 }
 
-export const SetTimeoutExample = () => {
+export const SetIntervalExample = () => {
 
     const [counter, setCounter] = useState(1)
     const [fake, setFake] = useState(1)
@@ -52,9 +52,12 @@ export const SetTimeoutExample = () => {
        }, [])
    */
     useEffect(() => {
-        setInterval(() => {
+        const intervalId = setInterval(() => {
             setCounter(state => state + 1)
         }, 1000)
+        return () => {
+            clearInterval(intervalId)
+        }
     }, [])
 
 
@@ -72,3 +75,81 @@ export const SetTimeoutExample = () => {
     )
 }
 
+export const ResetEffectExample = () => {
+
+    const [counter, setCounter] = useState(1)
+
+    console.log('ResetEffectExample')
+
+    useEffect(() => {
+        console.log('Effect occurred' + counter)
+        return () => {
+            console.log('RESET EFFECT' + counter)
+        }
+    }, [counter])
+
+
+    const increase = () => {
+        setCounter(counter + 1)
+    }
+    return (
+        <div>
+            Hello, counter: {counter}
+            <button onClick={increase}>+</button>
+        </div>
+
+    )
+}
+
+export const KeysTrackerExample = () => {
+
+    const [text, setText] = useState('')
+
+    console.log(text)
+
+    useEffect(() => {
+        const handler = (e: KeyboardEvent) => {
+            console.log(e.key)
+            setText(text + e.key)
+        }
+        window.addEventListener('keypress', handler)
+        return () => {
+            window.removeEventListener('keypress', handler)
+        }
+
+    }, [text])
+
+
+    return (
+        <div>
+            Typed text: {text}
+        </div>
+
+    )
+}
+
+export const SetTimeoutExample = () => {
+
+    const [text, setText] = useState('')
+
+    console.log(text)
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            console.log('Timeout expired')
+            setText('3 seconds passed')
+        }, 3000)
+        return () => {
+            clearTimeout(timeoutId)
+        }
+
+    }, [text])
+
+
+    return (
+        <div>
+            {text}
+        </div>
+
+    )
+}
